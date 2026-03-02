@@ -1,21 +1,32 @@
 function createCheckerboard(side) {
   const container = document.querySelector(`.checkerboard.${side}`);
-  const squareSize = 40;
-  const numSquares = Math.ceil(window.innerHeight / squareSize);
-  container.innerHTML = ''; // clear existing
+  const numRows = Math.ceil(window.innerHeight / 40); // 40px square height
+  container.innerHTML = ''; // clear any existing squares
 
-  for (let i = 0; i < numSquares; i++) {
-    const square = document.createElement('div');
-    square.classList.add('square');
-    container.appendChild(square);
+  for (let row = 0; row < numRows; row++) {
+    for (let col = 0; col < 4; col++) { // 4 squares per row
+      const square = document.createElement('div');
+
+      // initial checkerboard pattern
+      if ((row + col) % 2 === 0) square.style.background = 'black';
+      else square.style.background = 'white';
+
+      // make interactive
+      square.addEventListener('click', () => {
+        square.style.background =
+          square.style.background === 'black' ? 'red' : 'black';
+      });
+
+      container.appendChild(square);
+    }
   }
 }
 
-// generate squares for both sides
+// generate both sides
 createCheckerboard('left');
 createCheckerboard('right');
 
-// optional: update on resize
+// regenerate on resize
 window.addEventListener('resize', () => {
   createCheckerboard('left');
   createCheckerboard('right');

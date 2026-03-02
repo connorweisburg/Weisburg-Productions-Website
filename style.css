@@ -6,40 +6,37 @@ body {
   line-height: 1.6;
 }
 
-/* Main content wrapper sits above the squares */
+/* Checkerboard side panels */
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* on top of squares */
+  max-width: 1100px;
+  margin: auto;
+  padding: 80px 20px;
 }
 
-/* Checkerboard side panels */
+/* Checkerboard containers */
 .checkerboard {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 60px; /* width of the squares panel */
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 squares per side */
+  grid-auto-rows: 40px; /* initial row size, will adjust with JS */
   z-index: 0; /* behind content */
 }
 
-/* Left and right positions */
 .checkerboard.left { left: 0; }
 .checkerboard.right { right: 0; }
 
 /* Each square */
 .checkerboard div {
   width: 100%;
-  height: 40px; /* size of each square */
-  box-sizing: border-box;
+  height: 100%;
+  cursor: pointer;
 }
 
-/* Alternate colors for checkerboard */
-.checkerboard div:nth-child(odd) { background: black; }
-.checkerboard div:nth-child(even) { background: white; }
-
-/* Hide checkerboard on mobile */
+/* Hide on mobile */
 @media (max-width: 1023px) {
   .checkerboard { display: none; }
 }
