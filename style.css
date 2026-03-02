@@ -6,19 +6,45 @@ body {
   line-height: 1.6;
 }
 
-/* Desktop-only checkerboard side borders */
-@media (min-width: 1024px) {
-  body {
-    background:
-      /* Left border */
-      linear-gradient(45deg, #111 25%, #f5f5f5 25%, #f5f5f5 50%, #111 50%, #111 75%, #f5f5f5 75%, #f5f5f5) left center / 40px 40px repeat-y,
-      /* Right border */
-      linear-gradient(45deg, #111 25%, #f5f5f5 25%, #f5f5f5 50%, #111 50%, #111 75%, #f5f5f5 75%, #f5f5f5) right center / 40px 40px repeat-y;
-    background-color: #f5f5f5; /* fallback/background behind the pattern */
-    background-attachment: fixed;
-  }
+/* Main content wrapper sits above the squares */
+.content {
+  position: relative;
+  z-index: 1;
 }
 
+/* Checkerboard side panels */
+.checkerboard {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 60px; /* width of the squares panel */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  z-index: 0; /* behind content */
+}
+
+/* Left and right positions */
+.checkerboard.left { left: 0; }
+.checkerboard.right { right: 0; }
+
+/* Each square */
+.checkerboard div {
+  width: 100%;
+  height: 40px; /* size of each square */
+  box-sizing: border-box;
+}
+
+/* Alternate colors for checkerboard */
+.checkerboard div:nth-child(odd) { background: black; }
+.checkerboard div:nth-child(even) { background: white; }
+
+/* Hide checkerboard on mobile */
+@media (max-width: 1023px) {
+  .checkerboard { display: none; }
+}
+
+/* Existing styles */
 section {
   padding: 80px 20px;
   max-width: 1100px;
