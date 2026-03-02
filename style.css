@@ -15,24 +15,22 @@ body {
   padding: 80px 20px;
 }
 
-/* Checkerboard containers */
 .checkerboard {
   position: fixed;
   top: 0;
   bottom: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 squares per side */
-  grid-auto-rows: 40px; /* initial row size, will adjust with JS */
-  z-index: 0; /* behind content */
+  width: 160px; /* 4 squares * 40px */
+  display: flex;
+  flex-wrap: wrap; /* allow multiple rows */
+  z-index: 0;
 }
 
 .checkerboard.left { left: 0; }
 .checkerboard.right { right: 0; }
 
-/* Each square */
 .checkerboard div {
-  width: 100%;
-  height: 100%;
+  width: 40px;   /* square width */
+  height: 40px;  /* square height */
   cursor: pointer;
 }
 
