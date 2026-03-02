@@ -1,10 +1,17 @@
 body {
   margin: 0;
-  padding: 0 160px; /* space for checkerboard */
+  padding: 0 160px; /* desktop padding for checkerboard */
   font-family: Arial, Helvetica, sans-serif;
   background: #f5f5f5;
   color: #111;
   line-height: 1.6;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0 20px; /* smaller padding on mobile */
+  }
 }
 
 /* Checkerboard side panels */
@@ -15,6 +22,7 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 60px 20px;
+  box-sizing: border-box;
 }
 
 .checkerboard {
@@ -69,12 +77,14 @@ body {
 /* Existing styles */
 section {
   padding: 80px 20px;
+  margin: 0 auto;
   max-width: 1100px;
   margin: auto;
 }
 
 .hero {
   text-align: center;
+  margin: 0 auto;
   padding-top: 40px;
 }
 
@@ -110,14 +120,22 @@ p {
   z-index: 2;           /* stays above checkerboard */
 }
 
+#music h2 {
+  text-align: center;
+}
+
 .catalog {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
 }
 
+.about {
+  text-align: center; /* centers everything inside the section */
+}
+
 .about p {
-  font-size: 1.2rem; /* increases the paragraph font size */
+  font-size: 1.2rem; /* keeps your larger font */
 }
 
 .track {
